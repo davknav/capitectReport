@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group 'davidlum'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation group: 'commons-cli', name: 'commons-cli', version: '1.4'
+    implementation group: 'com.google.guava', name: 'guava', version: '27.0.1-jre'
+    implementation group: 'net.sf.supercsv', name: 'super-csv', version: '2.4.0'
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+application {
+    mainClassName = 'davidlum.capitectReport.ui.SwingPicker'
+}
