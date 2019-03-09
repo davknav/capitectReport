@@ -1,25 +1,54 @@
 plugins {
-    id 'java'
-    id 'application'
+  id 'java'
+  id 'application'
+  id "com.github.cr0.macappbundle" version "3.0.1"  // Run "./gradlew createDmg"
+  // id "edu.sc.seis.macAppBundle" version "2.3.0"  // Run "./gradlew createDmg" for MacOS  // DID NOT WORK
 }
 
 group 'davidlum'
-version '1.0-SNAPSHOT'
+version '1.0'
 
 sourceCompatibility = 1.8
 
 repositories {
-    mavenCentral()
+  mavenCentral()
 }
 
 dependencies {
-    implementation group: 'commons-cli', name: 'commons-cli', version: '1.4'
-    implementation group: 'com.google.guava', name: 'guava', version: '27.0.1-jre'
-    implementation group: 'net.sf.supercsv', name: 'super-csv', version: '2.4.0'
-
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+  implementation group: 'commons-cli', name: 'commons-cli', version: '1.4'
+  implementation group: 'com.google.guava', name: 'guava', version: '27.0.1-jre'
+  implementation group: 'net.sf.supercsv', name: 'super-csv', version: '2.4.0'
+  
+  testCompile group: 'junit', name: 'junit', version: '4.12'
 }
+
+// jar {
+//   manifest {
+//     attributes 'Main-Class': 'davidlum.capitectReport.ui.SwingPicker'
+//   }
+// }
 
 application {
-    mainClassName = 'davidlum.capitectReport.ui.SwingPicker'
+  mainClassName = 'davidlum.capitectReport.ui.SwingPicker'
 }
+
+macAppBundle {
+  appName = "Capitect Report"
+  appCategory = "public.app-category.utilities"
+  icon = "src/main/resources/capitectReportLogo.icns"
+  agent = true
+
+  version = version
+
+  mainClassName = 'davidlum.capitectReport.ui.SwingPicker'
+
+  bundleJRE = true
+  bundleExecutable = "CapitectReport"
+  bundleIdentifier = "davidlum.capitectReport"
+  bundleCopyright = "Copyright 2019 David Lum"
+
+  //javaXProperties.add("startOnFirstThread")
+
+  archiveName = "Capitect Report ${project.version}"
+}
+
