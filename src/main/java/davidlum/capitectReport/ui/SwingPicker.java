@@ -3,26 +3,16 @@ package davidlum.capitectReport.ui;
 import davidlum.capitectReport.converter.CsvConverter;
 import davidlum.capitectReport.converter.Main;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JFileChooser;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import java.awt.Dimension;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.prefs.Preferences;
-
-import javax.swing.JTextArea;
 
 public class SwingPicker extends JDialog {
   private static final String CSV_FILE_PREFS_KEY = "lastCsvFile";
@@ -122,7 +112,7 @@ public class SwingPicker extends JDialog {
               CsvConverter converter = new CsvConverter(selectedCsvFile, outputCsv);
               converter.process();
               System.exit(0);
-            } catch (Exception e) {
+            } catch (Throwable e) {
               StringWriter sw = new StringWriter();
               PrintWriter pw = new PrintWriter(sw);
               e.printStackTrace(pw);
